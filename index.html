@@ -1,12 +1,15 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Flow-based Fast and High-quality Lip-to-speech Generation</title>
+<title>Flow-based Unconstrained Lip to Speech Generation</title>
 
 <!-- Meta tags for search engines to crawl -->
 <meta name="robots" content="index,follow">
-<meta name="description" content="Lip-to-speech aims to generate corresponding speeches conditioned on silent facial videos. This technology can be widely used in a variety of applications such as video conferencing and silent video dubbing. Lip-to-speech is a more challenging task compared with the well-known text-to-speech (TTS) since lip motions are more ambiguous than texts for generating intelligible speeches due to the existence of homophenes. Most existing methods can only generate speeches under constrained conditions with a limited vocabulary and fixed sentence structures. These methods do not perform well in real-world environments. In this paper, we propose a novel parallel flow-based lip-to-speech model, called GlowLTS. GlowLTS uses a flow-based decoder to quickly generate high-quality speeches in real-world unconstrained settings.
-Since the length of video features and audio features are unequal, we propose a simple video and audio alignment method in order to achieve the parallel generation of speech. This method can ensure the temporal synchronization of video frames and audio frames to the greatest extent. Through experiments, we find that directly using the output of the visual encoder as the condition of the flow-based decoder often results in degraded speech intelligibility, so we propose a condition module through which we can generate rough but intelligible speeches. With these rough speeches as condition, we propose a flow-based decoder to generate higher-quality speeches. We demonstrate that GlowLTS can generate more natural speech than the current state-of-art lip-to-speech model through extensive experiments. More significantly, GlowLTS can achieve up to 19.76x speed-up than the current state-of-art model due to the parallelism of the inference process.">
+<meta name="description" content="Unconstrained lip-to-speech aims to generate corresponding speeches based on silent facial videos with no restriction to head pose or vocabulary. It is desirable to generate intelligible and natural speech with a fast speed in unconstrained settings.
+Currently, to handle the more complicated scenarios, most existing methods adopt the autoregressive architecture, which are optimized with the MSE loss. Although these methods have achieved promising performance, they are prone to bring issues including high inference latency and mel-spectrogram over-smoothness. 
+To tackle these problems, we propose a novel 
+flow-based non-autoregressive lip-to-speech model (GlowLTS) to break autoregressive constraints and achieve faster inference. Concretely, we adopt a flow-based decoder which is optimized by maximizing the likelihood of the training data and is capable of more natural and fast speech generation. Moreover, we devise a condition module to improve the intelligibility of generated speech. 
+We demonstrate the superiority of our proposed method through objective and subjective evaluation on Lip2Wav-Chemisty-Lectures and Lip2Wav-Chess-Analysis datasets. Our demo video can be found at \url{https://glowlts.github.io/}.">
 <!-- <meta name="keywords" content="lip reading;lip generation;task duality;talking face generation;lip to face;text to speech;">
 <link rel="author" href="https://dualip.github.io/"> -->
 
@@ -26,14 +29,17 @@ Since the length of video features and audio features are unequal, we propose a 
       <h1>Flow-based Fast and High-quality Lip-to-speech Generation</h1>
     </div>
 
-<!-- <div class="section abstract">
+    <div class="section abstract">
   <h2>Abstract</h2>
   <br>
   <p>
-    Lip-to-speech aims to generate corresponding speeches conditioned on silent facial videos. This technology can be widely used in a variety of applications such as video conferencing and silent video dubbing. Lip-to-speech is a more challenging task compared with the well-known text-to-speech (TTS) since lip motions are more ambiguous than texts for generating intelligible speeches due to the existence of homophenes. Most existing methods can only generate speeches under constrained conditions with a limited vocabulary and fixed sentence structures. These methods do not perform well in real-world environments. In this paper, we propose a novel parallel flow-based lip-to-speech model, called GlowLTS. GlowLTS uses a flow-based decoder to quickly generate high-quality speeches in real-world unconstrained settings.
-    Since the length of video features and audio features are unequal, we propose a simple video and audio alignment method in order to achieve the parallel generation of speech. This method can ensure the temporal synchronization of video frames and audio frames to the greatest extent. Through experiments, we find that directly using the output of the visual encoder as the condition of the flow-based decoder often results in degraded speech intelligibility, so we propose a condition module through which we can generate rough but intelligible speeches. With these rough speeches as condition, we propose a flow-based decoder to generate higher-quality speeches. We demonstrate that GlowLTS can generate more natural speech than the current state-of-art lip-to-speech model through extensive experiments. More significantly, GlowLTS can achieve up to 19.76x speed-up than the current state-of-art model due to the parallelism of the inference process.
+    Unconstrained lip-to-speech aims to generate corresponding speeches based on silent facial videos with no restriction to head pose or vocabulary. It is desirable to generate intelligible and natural speech with a fast speed in unconstrained settings.
+  Currently, to handle the more complicated scenarios, most existing methods adopt the autoregressive architecture, which are optimized with the MSE loss. Although these methods have achieved promising performance, they are prone to bring issues including high inference latency and mel-spectrogram over-smoothness. 
+  To tackle these problems, we propose a novel 
+  flow-based non-autoregressive lip-to-speech model (GlowLTS) to break autoregressive constraints and achieve faster inference. Concretely, we adopt a flow-based decoder which is optimized by maximizing the likelihood of the training data and is capable of more natural and fast speech generation. Moreover, we devise a condition module to improve the intelligibility of generated speech. 
+  We demonstrate the superiority of our proposed method through objective and subjective evaluation on Lip2Wav-Chemisty-Lectures and Lip2Wav-Chess-Analysis datasets. Our demo video can be found at \url{https://glowlts.github.io/}.
   </p>
-</div> -->
+</div>
 
 
 
